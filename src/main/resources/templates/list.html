@@ -2,12 +2,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <style type="text/css">
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
     <title>Board List</title>
 </head>
 <body>
     <div th:insert="common/header.html" id="header"></div>
     <h1>helloWorld?</h1>
     <a th:href="@{/post}">글쓰기</a>
+    <table class="table">
+        <thead>
+            <th>제목</th>
+            <th>글제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+        </thead>
+        <tbody>
+            <tr th:each="board : ${boardList} ">
+                <td>
+                    <span th:text="${board.title}"></span>
+                </td>
+                <td>
+                    <a th:href="@{'/post/' + ${board.id}}">
+                        <span th:text="${board.title}"></span>
+                    </a>
+                </td>
+                <td>
+                    <span th:text="${board.username}"></span>
+                </td>
+                <td>
+                    <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
     <div th:insert="common/footer.html" id="footer"></div>
 </body>
 </html>

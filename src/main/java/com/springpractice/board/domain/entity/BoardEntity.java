@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "board")
-public class BoardEntity {
+public class BoardEntity extends TimeEntity{
 
     @Id
     @GeneratedValue
