@@ -53,7 +53,11 @@ public class MemberDto {
     }
 
     public MemberEntity toEntity() {
-        return new MemberEntity(id, email, password);
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setId(this.id);
+        memberEntity.setEmail(this.email);
+        memberEntity.setPassword(this.password);
+        return memberEntity;
     }
 
     public MemberDto(Long id, String email, String password) {

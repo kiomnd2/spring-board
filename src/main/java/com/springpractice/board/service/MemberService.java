@@ -4,6 +4,7 @@ import com.springpractice.board.domain.Role;
 import com.springpractice.board.domain.entity.MemberEntity;
 import com.springpractice.board.domain.repository.MemberRepository;
 import com.springpractice.board.dto.MemberDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -22,17 +23,18 @@ import java.util.Optional;
 public class MemberService implements UserDetailsService {
     private MemberRepository memberRepository;
 
-
-
+    @Autowired
+    public MemberService(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
 
     @Transactional
     //로그인
-    public Long joinUser(MemberDto memberDto){
-
+    public void joinUser(MemberDto memberDto){
         //비밀번호 암호화
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         memberDto.setPassword(passwordEncoder.encode(memberDto.getPassword()));
-        return memberRepository.save(memberDto.toEntity()).getId();
+        memberRepository.save(memberDto.toEntity());
     }
 
     public UserDetails loadUserByUsername(String userEmail) throws UsernameNotFoundException {

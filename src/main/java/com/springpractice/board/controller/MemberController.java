@@ -3,6 +3,7 @@ package com.springpractice.board.controller;
 
 import com.springpractice.board.dto.MemberDto;
 import com.springpractice.board.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class MemberController {
     private MemberService memberService;
 
+    @Autowired
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
 
     //메인페이지
     @GetMapping("/")
@@ -28,7 +33,6 @@ public class MemberController {
     @PostMapping("/user/signup")
     public String execSignup(MemberDto memberDto) {
         memberService.joinUser(memberDto);
-
         return "redirect:/user/login";
     }
 
@@ -45,6 +49,15 @@ public class MemberController {
         return "/loginSuccess";
     }
 
+    @GetMapping("/user/denied")
+    public String dispDenied() {
+        return "/denied";
+    }
+
+    @GetMapping("/user/logout/result")
+    public String dispLogout() {
+        return "/logout";
+    }
 
     //내정보 페이지
     @GetMapping("/user/info")
