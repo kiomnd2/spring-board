@@ -8,6 +8,7 @@ public class MemberDto {
     private Long id;
     private String email;
     private String password;
+    private String nickname;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
 
@@ -22,6 +23,14 @@ public class MemberDto {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public void setEmail(String email) {

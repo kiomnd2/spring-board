@@ -20,8 +20,13 @@ public class MemberEntity{
     private Long id;
     @Column(length = 20, nullable = false)
     private String email;
+
+    @Column(length = 100, nullable = false)
+    private String nickname;
+
     @Column(length = 100, nullable = false)
     private String password;
+
 
     public Long getId() {
         return id;
@@ -47,5 +52,11 @@ public class MemberEntity{
         this.password = password;
     }
 
+    public String getNickname() {
+        return nickname;
+    }
 
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
 }

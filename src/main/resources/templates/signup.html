@@ -8,10 +8,20 @@
     <h1>회원가입</h1>
     <hr>
 
-    <form th:action="@{/user/signup}" method="post">
-        <input type="text" name="email" placeholder="이메일을 입력해주세요">
-        <input type="password" name="password" placeholder="비밀번호">
-        <button type="submit">가입하기</button>
+    <form th:action="@{/user/signup}" method="POST" modelAttribute="userDto">
+        <div>
+            <input type="text" name="email" th:value="${userDto.email}" placeholder="이메일을 입력해주세요">
+            <span th:text="${valid_email}"></span>
+        </div>
+        <div>
+            <input type="text" name="nickname" th:value="${userDto.nickname}" placeholder="닉네임을 입력해주세요">
+            <span th:text="${valid_nickname}"></span>
+        </div>
+        <div>
+            <input type="password" name="password" placeholder="비밀번호">
+            <span th:text="${valid_password}"></span>
+        </div>
+        <button type="submit">등록</button>
     </form>
 </body>
 </html>

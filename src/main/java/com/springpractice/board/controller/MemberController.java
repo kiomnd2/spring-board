@@ -23,26 +23,6 @@ public class MemberController {
         return "/index";
     }
 
-    //회원가입 화면 이동
-    @GetMapping("/user/signup")
-    public String dispSignup() {
-        return "/signup";
-    }
-
-    //회원가입 처리
-    @PostMapping("/user/signup")
-    public String execSignup(MemberDto memberDto) {
-        memberService.joinUser(memberDto);
-        return "redirect:/user/login";
-    }
-
-    //로그인 페이지
-    @GetMapping("/user/login")
-    public String dispLogin() {
-        return "/login";
-    }
-
-
     //로그인 결과 페이지
     @GetMapping("/user/login/result")
     public String dispLoginResult(){
